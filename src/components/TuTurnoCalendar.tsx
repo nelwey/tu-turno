@@ -63,20 +63,20 @@ export default function TuTurnoCalendar() {
           type="button"
           variant="outline"
           size="icon"
-          className="shrink-0 border-[var(--neon)]/40 bg-black/30 text-[var(--neon)] hover:bg-[var(--neon)]/10"
+          className="shrink-0 border-[var(--neon)]/40 bg-white/60 text-[var(--neon)] hover:bg-[var(--neon)]/10 dark:bg-black/30"
           onClick={() => shiftMonth(-1)}
           aria-label="Mes anterior"
         >
           <ChevronLeft className="size-5" />
         </Button>
-        <h2 className="font-display m-0 min-w-0 flex-1 text-center text-xl capitalize tracking-wide text-white sm:text-3xl md:text-4xl">
+        <h2 className="font-display m-0 min-w-0 flex-1 text-center text-xl capitalize tracking-wide text-[color:var(--tu-text)] sm:text-3xl md:text-4xl">
           {title}
         </h2>
         <Button
           type="button"
           variant="outline"
           size="icon"
-          className="shrink-0 border-[var(--neon)]/40 bg-black/30 text-[var(--neon)] hover:bg-[var(--neon)]/10"
+          className="shrink-0 border-[var(--neon)]/40 bg-white/60 text-[var(--neon)] hover:bg-[var(--neon)]/10 dark:bg-black/30"
           onClick={() => shiftMonth(1)}
           aria-label="Mes siguiente"
         >
@@ -85,18 +85,18 @@ export default function TuTurnoCalendar() {
       </div>
 
       <div className="-mx-1 overflow-x-auto pb-1 sm:mx-0">
-        <div className="min-w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-[0_0_32px_rgba(0,255,209,0.08)] backdrop-blur-sm sm:min-w-0">
-          <div className="grid grid-cols-7 gap-px bg-white/10">
+        <div className="min-w-[320px] overflow-hidden rounded-2xl border border-[var(--line)] bg-white/75 shadow-[0_0_32px_rgba(0,255,209,0.08)] backdrop-blur-sm dark:border-white/10 dark:bg-black/40 sm:min-w-0">
+          <div className="grid grid-cols-7 gap-px bg-[var(--line)]">
             {WEEKDAYS_ES.map((wd) => (
               <div
                 key={wd}
-                className="bg-black/60 px-0.5 py-1.5 text-center text-[10px] font-semibold tracking-wide text-white/50 uppercase sm:px-1 sm:py-2 sm:text-xs md:text-sm"
+                className="bg-white/90 px-0.5 py-1.5 text-center text-[10px] font-semibold tracking-wide text-[color:var(--tu-text-muted)] uppercase dark:bg-black/60 dark:text-white/50 sm:px-1 sm:py-2 sm:text-xs md:text-sm"
               >
                 {wd}
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-7 gap-px bg-white/10">
+          <div className="grid grid-cols-7 gap-px bg-[var(--line)]">
             {weeks.flatMap((row, ri) =>
               row.map((cell, ci) => {
                 const key = `${ri}-${ci}`
@@ -104,7 +104,7 @@ export default function TuTurnoCalendar() {
                   return (
                     <div
                       key={key}
-                      className="min-h-[64px] bg-black/30 sm:min-h-[80px] md:min-h-[88px]"
+                      className="min-h-[64px] bg-white/50 dark:bg-black/30 sm:min-h-[80px] md:min-h-[88px]"
                     />
                   )
                 }
@@ -117,16 +117,18 @@ export default function TuTurnoCalendar() {
                   <div
                     key={key}
                     className={[
-                      'relative flex min-h-[64px] flex-col items-center justify-start bg-black/50 p-1 sm:min-h-[80px] sm:p-1.5 md:min-h-[88px] md:p-2',
+                      'relative flex min-h-[64px] flex-col items-center justify-start bg-white/80 p-1 dark:bg-black/50 sm:min-h-[80px] sm:p-1.5 md:min-h-[88px] md:p-2',
                       weekend
                         ? 'ring-1 ring-[var(--neon)]/35 ring-inset'
-                        : 'opacity-90',
+                        : 'opacity-95 dark:opacity-90',
                     ].join(' ')}
                   >
                     <span
                       className={[
                         'font-body text-xs font-semibold sm:text-sm md:text-base',
-                        weekend ? 'text-[var(--neon2)]' : 'text-white/80',
+                        weekend
+                          ? 'text-[var(--neon2)]'
+                          : 'text-[color:var(--tu-text-muted)]',
                       ].join(' ')}
                     >
                       {d.getDate()}
@@ -136,7 +138,7 @@ export default function TuTurnoCalendar() {
                         {cleaner.initial}
                       </span>
                     ) : weekend && !sat ? (
-                      <span className="font-body mt-0.5 text-[9px] text-white/35 sm:mt-1 sm:text-[10px] md:text-xs">
+                      <span className="font-body mt-0.5 text-[9px] text-[color:var(--tu-text-faint)] sm:mt-1 sm:text-[10px] md:text-xs">
                         —
                       </span>
                     ) : null}
@@ -147,7 +149,7 @@ export default function TuTurnoCalendar() {
           </div>
         </div>
       </div>
-      <p className="font-body mt-3 px-1 text-center text-xs text-white/45 sm:mt-4 sm:text-sm">
+      <p className="font-body mt-3 px-1 text-center text-xs text-[color:var(--tu-text-muted)] sm:mt-4 sm:text-sm">
         Fines de semana resaltados; iniciales en los sábados de limpieza (rotación).
       </p>
     </div>

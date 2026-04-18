@@ -36,7 +36,7 @@ function ParticipantVideo({
 export default function TuTurnoParticipants() {
   return (
     <div className="rise-in mx-auto w-full max-w-6xl px-0">
-      <p className="font-body mb-8 text-center text-sm leading-relaxed text-white/60 sm:mb-10 sm:text-base">
+      <p className="font-body mb-8 text-center text-sm leading-relaxed text-[color:var(--tu-text-muted)] sm:mb-10 sm:text-base">
         Estas son las personas en la rotación de los sábados. El orden se repite
         cada cinco semanas — cada una con su animación.
       </p>
@@ -44,7 +44,7 @@ export default function TuTurnoParticipants() {
         {CLEANERS.map((person, i) => (
           <li
             key={person.id}
-            className="flex flex-col items-center rounded-2xl border border-white/10 bg-black/35 p-4 shadow-[0_0_24px_rgba(0,255,209,0.06)] backdrop-blur-sm sm:p-5"
+            className="flex flex-col items-center rounded-2xl border border-[var(--line)] bg-white/70 p-4 shadow-[0_0_24px_rgba(0,255,209,0.06)] backdrop-blur-sm dark:border-white/10 dark:bg-black/35 sm:p-5"
           >
             <ParticipantVideo
               src={person.videoSrc}
@@ -52,10 +52,10 @@ export default function TuTurnoParticipants() {
               initial={person.initial}
             />
             <div className="mt-4 w-full text-center">
-              <p className="font-display m-0 text-2xl tracking-wide text-white sm:text-3xl">
+              <p className="font-display m-0 text-2xl tracking-wide text-[color:var(--tu-text)] sm:text-3xl">
                 {person.name}
               </p>
-              <p className="font-body m-0 mt-1 text-sm text-white/45 sm:text-base">
+              <p className="font-body m-0 mt-1 text-sm text-[color:var(--tu-text-muted)] sm:text-base">
                 #{i + 1} en la rotación
               </p>
             </div>

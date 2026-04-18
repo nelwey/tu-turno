@@ -6,7 +6,7 @@ import Header from '../components/Header'
 
 import appCss from '../styles.css?url'
 
-const THEME_INIT_SCRIPT = `(function(){try{var root=document.documentElement;root.classList.remove('light','dark');root.classList.add('dark');root.style.colorScheme='dark';}catch(e){}})();`
+const THEME_INIT_SCRIPT = `(function(){try{var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var r=(s==='light'||s==='dark')?s:(d?'dark':'light');var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(r);root.style.colorScheme=r;root.setAttribute('data-theme',r);}catch(e){}})();`
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,6 +27,19 @@ export const Route = createRootRoute({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'icon',
+        href: '/logo-911.png',
+        type: 'image/png',
+      },
+      {
+        rel: 'apple-touch-icon',
+        href: '/logo-911.png',
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.json',
+      },
     ],
   }),
   shellComponent: RootDocument,
@@ -34,12 +47,12 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className="dark" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-body antialiased [overflow-wrap:anywhere] selection:bg-[rgba(0,255,209,0.22)]">
+      <body className="font-body antialiased [overflow-wrap:anywhere] selection:bg-[rgba(0,255,209,0.22)] dark:selection:bg-[rgba(0,255,209,0.28)]">
         <Header />
         {children}
         <Footer />

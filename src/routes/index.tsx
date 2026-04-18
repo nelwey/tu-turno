@@ -15,10 +15,10 @@ function Home() {
         <p className="font-body mb-2 text-xs font-medium tracking-[0.25em] text-[var(--neon)] uppercase sm:text-sm">
           Habitación 911
         </p>
-        <h1 className="font-display text-5xl leading-none tracking-[0.06em] text-white sm:text-7xl md:text-8xl">
+        <h1 className="font-display text-5xl leading-none tracking-[0.06em] text-[color:var(--tu-text)] sm:text-7xl md:text-8xl">
           TU TURNO
         </h1>
-        <p className="font-body mx-auto mt-3 max-w-xl px-2 text-sm leading-snug text-white/55 sm:mt-4 sm:text-base md:text-lg">
+        <p className="font-body mx-auto mt-3 max-w-xl px-2 text-sm leading-snug text-[color:var(--tu-text-muted)] sm:mt-4 sm:text-base md:text-lg">
           Rotación de limpieza los sábados: mismo orden cada cinco semanas. Ojo
           al charco.
         </p>
@@ -27,7 +27,7 @@ function Home() {
       <Tabs defaultValue="today" className="w-full min-w-0">
         <TabsList
           variant="line"
-          className="mx-auto mb-8 grid h-auto min-h-11 w-full max-w-lg grid-cols-3 gap-1 rounded-full border border-white/10 bg-black/40 p-1 shadow-[0_0_24px_rgba(0,255,209,0.12)] sm:mb-10 sm:min-h-12 sm:max-w-2xl sm:gap-0 sm:p-1"
+          className="mx-auto mb-8 grid h-auto min-h-11 w-full max-w-lg grid-cols-3 gap-1 rounded-full border border-[var(--line)] bg-white/75 p-1 shadow-[0_0_24px_rgba(0,255,209,0.12)] dark:border-white/10 dark:bg-black/40 sm:mb-10 sm:min-h-12 sm:max-w-2xl sm:gap-0 sm:p-1"
         >
           <TabsTrigger
             value="today"

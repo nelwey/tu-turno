@@ -56,9 +56,9 @@ export default function TuTurnoToday() {
           <p className="font-display mb-3 max-w-[22rem] text-3xl leading-[0.95] text-[var(--neon)] sm:max-w-none sm:mb-4 sm:text-5xl md:text-6xl lg:text-7xl">
             ¡HOY TE TOCA LIMPIAR!
             <br />
-            <span className="text-white">SÍ, TÚ</span>
+            <span className="text-[color:var(--tu-text)]">SÍ, TÚ</span>
           </p>
-          <p className="font-body px-2 text-base text-white/80 sm:text-lg md:text-xl">
+          <p className="font-body px-2 text-base text-[color:var(--tu-text-muted)] sm:text-lg md:text-xl">
             Turno de{' '}
             <span className="font-semibold text-[var(--neon2)]">{cleaner.name}</span>
           </p>
@@ -66,13 +66,13 @@ export default function TuTurnoToday() {
         </>
       ) : (
         <>
-          <p className="font-display mb-3 px-2 text-3xl leading-tight text-white sm:text-5xl md:text-6xl">
+          <p className="font-display mb-3 px-2 text-3xl leading-tight text-[color:var(--tu-text)] sm:text-5xl md:text-6xl">
             Tranqui. Hoy no toca limpiar{' '}
             <span className="inline-block animate-[wiggle_2.5s_ease-in-out_infinite]">
               😎
             </span>
           </p>
-          <p className="font-body px-2 text-lg text-white/75 sm:text-xl md:text-2xl">
+          <p className="font-body px-2 text-lg text-[color:var(--tu-text-muted)] sm:text-xl md:text-2xl">
             Próxima víctima:{' '}
             <span className="font-semibold text-[var(--neon)]">
               {nextVictim?.name ?? '—'}
