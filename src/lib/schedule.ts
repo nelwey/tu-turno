@@ -45,9 +45,10 @@ function startOfLocalDay(d: Date): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate())
 }
 
-/** Cleaning rotations run on Saturdays only (per schedule anchors). */
-export function isCleaningSaturday(d: Date): boolean {
-  return d.getDay() === 6
+/** Cleaning days are weekends (Saturday or Sunday). */
+export function isCleaningDay(d: Date): boolean {
+  const day = d.getDay()
+  return day === 0 || day === 6
 }
 
 function weekIndexSinceAnchor(d: Date): number {
@@ -57,22 +58,22 @@ function weekIndexSinceAnchor(d: Date): number {
 }
 
 /**
- * Returns the assigned cleaner for `date` when it falls on a rotation Saturday;
+ * Returns the assigned cleaner for `date` when it falls on a cleaning weekend day;
  * otherwise `null`.
  */
 export function getCleanerForDate(date: Date): Cleaner | null {
-  if (!isCleaningSaturday(date)) return null
+  if (!isCleaningDay(date)) return null
   const w = weekIndexSinceAnchor(date)
   const n = CLEANERS.length
   const i = ((w % n) + n) % n
   return CLEANERS[i]!
 }
 
-/** Upcoming Saturday from `from` (same day if `from` is Saturday). */
-export function getNextCleaningSaturday(from: Date = new Date()): Date {
+/** Upcoming cleaning day from `from` (same day if weekend). */
+export function getNextCleaningDay(from: Date = new Date()): Date {
   const cur = startOfLocalDay(from)
   const dow = cur.getDay()
-  if (dow === 6) return cur
+  if (dow === 6 || dow === 0) return cur
   const daysUntilSat = (6 - dow + 7) % 7
   const next = new Date(cur)
   next.setDate(cur.getDate() + daysUntilSat)

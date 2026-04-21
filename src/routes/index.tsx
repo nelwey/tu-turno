@@ -4,6 +4,7 @@ import { CalendarDays, Users, Zap } from 'lucide-react'
 import TuTurnoCalendar from '#/components/TuTurnoCalendar'
 import TuTurnoParticipants from '#/components/TuTurnoParticipants'
 import TuTurnoToday from '#/components/TuTurnoToday'
+import VideoCacheWarmup from '#/components/VideoCacheWarmup'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '#/components/ui/tabs'
 
 export const Route = createFileRoute('/')({ component: Home })
@@ -11,6 +12,7 @@ export const Route = createFileRoute('/')({ component: Home })
 function Home() {
   return (
     <main className="page-wrap w-full max-w-[1200px] px-3 pb-12 pt-8 sm:px-4 sm:pb-16 sm:pt-10 md:pt-14">
+      <VideoCacheWarmup />
       <header className="mb-8 text-center sm:mb-10">
         <p className="font-body mb-2 text-xs font-medium tracking-[0.25em] text-[var(--neon)] uppercase sm:text-sm">
           Habitación 911

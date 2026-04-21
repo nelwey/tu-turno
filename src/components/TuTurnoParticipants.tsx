@@ -23,6 +23,7 @@ function ParticipantVideo({
           loop
           muted
           playsInline
+          preload="auto"
           aria-label={`Animación de ${name}`}
         />
         <span className="font-display absolute left-2 top-2 z-20 rounded-lg border border-[var(--neon)]/70 bg-black/55 px-2 py-1 text-lg leading-none text-[var(--neon)] shadow-[0_0_12px_rgba(0,255,209,0.4)] sm:left-2.5 sm:top-2.5 sm:text-xl">
@@ -38,7 +39,7 @@ export default function TuTurnoParticipants() {
     <div className="rise-in mx-auto w-full max-w-6xl px-0">
       <p className="font-body mb-8 text-center text-sm leading-relaxed text-[color:var(--tu-text-muted)] sm:mb-10 sm:text-base">
         Estas son las personas en la rotación de los sábados. El orden se repite
-        cada cinco semanas — cada una con su animación.
+        cada cinco semanas.
       </p>
       <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 xl:grid-cols-5 xl:gap-4 2xl:gap-6">
         {CLEANERS.map((person, i) => (

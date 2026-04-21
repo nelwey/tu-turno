@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { Button } from '#/components/ui/button'
-import { getCleanerForDate, isCleaningSaturday } from '#/lib/schedule'
+import { getCleanerForDate, isCleaningDay } from '#/lib/schedule'
 
 const WEEKDAYS_ES = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
 
@@ -110,8 +110,8 @@ export default function TuTurnoCalendar() {
                 }
                 const d = cell.date
                 const weekend = isWeekendDay(d)
-                const sat = isCleaningSaturday(d)
-                const cleaner = sat ? getCleanerForDate(d) : null
+                const cleaningDay = isCleaningDay(d)
+                const cleaner = cleaningDay ? getCleanerForDate(d) : null
 
                 return (
                   <div
@@ -133,11 +133,14 @@ export default function TuTurnoCalendar() {
                     >
                       {d.getDate()}
                     </span>
-                    {sat && cleaner ? (
-                      <span className="font-display mt-0.5 rounded border border-[var(--neon)]/60 bg-[var(--neon)]/15 px-1 py-px text-sm text-[var(--neon)] shadow-[0_0_12px_rgba(0,255,209,0.35)] sm:mt-1 sm:rounded-md sm:px-2 sm:py-0.5 sm:text-lg md:text-xl">
+                    {cleaningDay && cleaner ? (
+                      <span
+                        title={cleaner.name}
+                        className="font-display mt-0.5 cursor-help rounded border border-[var(--neon)]/60 bg-[var(--neon)]/15 px-1 py-px text-sm text-[var(--neon)] shadow-[0_0_12px_rgba(0,255,209,0.35)] sm:mt-1 sm:rounded-md sm:px-2 sm:py-0.5 sm:text-lg md:text-xl"
+                      >
                         {cleaner.initial}
                       </span>
-                    ) : weekend && !sat ? (
+                    ) : weekend && !cleaningDay ? (
                       <span className="font-body mt-0.5 text-[9px] text-[color:var(--tu-text-faint)] sm:mt-1 sm:text-[10px] md:text-xs">
                         —
                       </span>
@@ -150,7 +153,7 @@ export default function TuTurnoCalendar() {
         </div>
       </div>
       <p className="font-body mt-3 px-1 text-center text-xs text-[color:var(--tu-text-muted)] sm:mt-4 sm:text-sm">
-        Fines de semana resaltados; iniciales en los sábados de limpieza (rotación).
+        Fines de semana resaltados; iniciales en días de limpieza (sábado y domingo).
       </p>
     </div>
   )

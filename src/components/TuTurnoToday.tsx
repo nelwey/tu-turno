@@ -1,8 +1,8 @@
 import type { Cleaner } from '#/lib/schedule'
 import {
   getCleanerForDate,
-  getNextCleaningSaturday,
-  isCleaningSaturday,
+  getNextCleaningDay,
+  isCleaningDay,
 } from '#/lib/schedule'
 
 function CleanerVideo({ cleaner }: { cleaner: Cleaner }) {
@@ -21,6 +21,7 @@ function CleanerVideo({ cleaner }: { cleaner: Cleaner }) {
             loop
             muted
             playsInline
+            preload="auto"
           />
           <p className="font-display absolute bottom-2 left-1/2 z-20 w-[calc(100%-1rem)] -translate-x-1/2 text-center text-2xl leading-tight tracking-[0.12em] text-white uppercase drop-shadow-[0_0_12px_rgba(0,255,209,0.9)] sm:bottom-3 sm:text-3xl md:text-4xl">
             {cleaner.name}
@@ -37,7 +38,7 @@ export default function TuTurnoToday() {
   let cleaner: Cleaner | null = null
   let nextVictim = null as ReturnType<typeof getCleanerForDate>
 
-  if (isCleaningSaturday(today)) {
+  if (isCleaningDay(today)) {
     const c = getCleanerForDate(today)
     if (c) {
       mode = 'turn'
@@ -45,7 +46,7 @@ export default function TuTurnoToday() {
     }
   }
   if (mode === 'chill') {
-    const nextSat = getNextCleaningSaturday(today)
+    const nextSat = getNextCleaningDay(today)
     nextVictim = getCleanerForDate(nextSat)
   }
 
@@ -78,6 +79,7 @@ export default function TuTurnoToday() {
               {nextVictim?.name ?? '—'}
             </span>
           </p>
+          {nextVictim ? <CleanerVideo cleaner={nextVictim} /> : null}
         </>
       )}
     </div>
